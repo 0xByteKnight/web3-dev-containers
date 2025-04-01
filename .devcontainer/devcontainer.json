@@ -1,0 +1,53 @@
+{
+    "name": "0xByteKnight's DevContainer",
+    "build": {
+        "dockerfile": "../Dockerfile"
+    },
+    "workspaceMount": "type=tmpfs,target=/workspace",
+    "workspaceFolder": "/workspace",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "juanblanco.solidity",
+                "trailofbits.slither-vscode",
+                "cyfrin.aderyn",
+                "fredcoen.solidity-comment-heanders",
+                "tintinweb.vscode-ethover",
+                "tamasfe.even-better-toml",
+                "esbenp.prettier-vscode",
+                "trailofbits.weaudit",
+                "tintinweb.solidity-metrics",
+                "tintinweb.graphviz-interactive-preview",
+                "wayou.vscode-todo-highlight",
+                "gruntfuggly.todo-tree",
+                "rust-lang.rust-analyzer",
+                "dustypomerleau.rust-syntax"
+            ],
+            "settings": {
+                "security.workspace.trust.enabled": false,
+                "telemetry.telemetryLevel": "off",
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "terminal.integrated.profiles.linux": {
+                    "zsh": {
+                        "path": "/usr/bin/zsh"
+                    }
+                }
+            }
+        }
+    },
+    "runArgs": [
+        "--tmpfs=/tmp:rw,noexec,nosuid,size=512m",
+        "--tmpfs=/var/tmp:rw,noexec,nosuid,size=512m",
+        "--tmpfs=/dev/shm:rw,noexec,nosuid,size=64m",
+        "--cap-drop=ALL",
+        "--security-opt", "no-new-privileges",
+        "--security-opt", "apparmor:docker-default",
+        "--sysctl=net.ipv6.conf.all.disable_ipv6=1",
+        "--sysctl=net.ipv6.conf.default.disable_ipv6=1",
+        "--cap-drop=NET_RAW",
+        "--network=bridge",
+        "--dns=1.1.1.1",
+        "--dns=1.0.0.1"
+    ],
+    "postCreateCommand": "echo Welcome to 0xByteKnight's dev-container. Check out https://blog.theredguild.org/where-do-you-run-your-code-part-ii-2/ for more tips on secure container usage."
+}
